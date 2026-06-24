@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserPlus } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
+import { getAuthErrorMessage } from "../api/axios.js";
 
 export default function Signup() {
   const { signup } = useAuth();
@@ -22,7 +23,7 @@ export default function Signup() {
       await signup({ name: form.name, email: form.email, password: form.password });
       navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || "Signup failed");
+      setError(getAuthErrorMessage(err, "Signup failed"));
     } finally {
       setLoading(false);
     }

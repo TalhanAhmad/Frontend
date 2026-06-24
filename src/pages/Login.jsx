@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MessageCircle } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
+import { getAuthErrorMessage } from "../api/axios.js";
 
 export default function Login() {
   const { login } = useAuth();
@@ -18,7 +19,7 @@ export default function Login() {
       await login(form);
       navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      setError(getAuthErrorMessage(err, "Login failed"));
     } finally {
       setLoading(false);
     }
