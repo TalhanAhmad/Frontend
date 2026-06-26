@@ -1,6 +1,7 @@
 ﻿# Soket Chat Frontend
 
-## Environment
+## files
+
 
 Create a `.env` file from `.env.example` for local development, and set the same variables in Vercel for production:
 
